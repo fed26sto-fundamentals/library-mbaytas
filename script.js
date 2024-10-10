@@ -1,6 +1,7 @@
-const myLibrary = [];
+let myLibrary = [];
 
-function Book(title, author, pages, read) {
+function Book(id, title, author, pages, read) {
+  this.id = id;
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -25,10 +26,17 @@ function closeDialog() {
   document.querySelector("dialog").close();
 }
 
+function removeBook(bookId) {
+  console.log(bookId);
+  myLibrary = myLibrary.filter((book) => book.id !== bookId);
+  displayBooks();
+}
+
 function addBookFromDialog(event) {
   event.preventDefault();
   const form = event.target;
   const book = new Book(
+    crypto.randomUUID(),
     form.title.value,
     form.author.value,
     form.pages.value,
@@ -45,10 +53,12 @@ function displayBooks() {
   books.innerHTML = "";
   myLibrary.forEach((book) => {
     books.innerHTML += `<div class="book">
+    <button class="remove" onclick="removeBook('${book.id}')">Remove</button>
     <p class="author">${book.author}</p>
     <h2 class="title">${book.title}</h2>
     <p class="pages">${book.pages} pages</p>
     <p class="read">${book.read ? "Read" : "Not read"}</p>
+    <p class="id">${book.id}</p>
     </div>`;
   });
 }
@@ -106,7 +116,15 @@ function seedLibrary() {
   ];
 
   books.forEach((book) => {
-    addBookToLibrary(new Book(book.title, book.author, book.pages, book.read));
+    addBookToLibrary(
+      new Book(
+        crypto.randomUUID(),
+        book.title,
+        book.author,
+        book.pages,
+        book.read
+      )
+    );
   });
 }
 
