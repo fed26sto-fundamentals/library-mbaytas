@@ -27,8 +27,13 @@ function closeDialog() {
 }
 
 function removeBook(bookId) {
-  console.log(bookId);
   myLibrary = myLibrary.filter((book) => book.id !== bookId);
+  displayBooks();
+}
+
+function toggleRead(bookId) {
+  const book = myLibrary.find((book) => book.id === bookId);
+  book.read = !book.read;
   displayBooks();
 }
 
@@ -52,19 +57,20 @@ function displayBooks() {
   const books = document.querySelector(".books");
   books.innerHTML = "";
   myLibrary.forEach((book) => {
-    books.innerHTML += `<div class="book">
+    books.innerHTML += `<div class="book card">
     <button class="remove" onclick="removeBook('${book.id}')">Remove</button>
     <p class="author">${book.author}</p>
     <h2 class="title">${book.title}</h2>
     <p class="pages">${book.pages} pages</p>
     <p class="read">${book.read ? "Read" : "Not read"}</p>
     <p class="id">${book.id}</p>
+    <button onclick="toggleRead('${book.id}')">Toggle read</button>
     </div>`;
   });
 }
 
 function seedLibrary() {
-  const books = [
+  [
     {
       title: "The Hobbit",
       author: "J.R.R. Tolkien",
@@ -96,7 +102,7 @@ function seedLibrary() {
       read: false,
     },
     {
-      title: "Do Androids Dream of Electric Sheep? ",
+      title: "Do Androids Dream of Electric Sheep?",
       author: "Philip K. Dick",
       pages: 272,
       read: false,
@@ -113,9 +119,7 @@ function seedLibrary() {
       pages: 416,
       read: false,
     },
-  ];
-
-  books.forEach((book) => {
+  ].forEach((book) => {
     addBookToLibrary(
       new Book(
         crypto.randomUUID(),

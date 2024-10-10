@@ -8,6 +8,12 @@
     min-height: 100vh;
 }
 
+.card {
+    background-color: #fff;
+    border: 1px solid #000;
+    box-shadow: 0 4px 10px 5px rgba(0, 0, 0, 0.1);
+}
+
 .books {
     display: flex;
     justify-content: center;
@@ -16,15 +22,12 @@
     max-width: 1200px;
 
     .book {
-        background-color: #fff;
         display: flex;
         flex-direction: column;
-        border: 1px solid #000;
         padding: 1rem;
         border-radius: 0.5rem;
         width: 200px;
-        height: 260px;
-        box-shadow: 0 4px 10px 5px rgba(0, 0, 0, 0.1);
+        height: 280px;
 
         p {
             margin: 0;
@@ -44,8 +47,6 @@
 }
 
 dialog {
-    background-color: #fff;
-    border: 1px solid #000;
     padding: 1rem;
     border-radius: 0.5rem;
 
@@ -67,4 +68,8 @@ dialog {
 
 button:first-child {
     margin-bottom: 20px;
+}
+
+button:last-child {
+    margin-top: 20px;
 }
