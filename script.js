@@ -17,6 +17,29 @@ function addBookToLibrary(book) {
   myLibrary.push(book);
 }
 
+function showDialog() {
+  document.querySelector("dialog").showModal();
+}
+
+function closeDialog() {
+  document.querySelector("dialog").close();
+}
+
+function addBookFromDialog(event) {
+  event.preventDefault();
+  const form = event.target;
+  const book = new Book(
+    form.title.value,
+    form.author.value,
+    form.pages.value,
+    form.read.checked
+  );
+
+  addBookToLibrary(book);
+  displayBooks();
+  closeDialog();
+}
+
 function displayBooks() {
   const books = document.querySelector(".books");
   books.innerHTML = "";
