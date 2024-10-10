@@ -64,7 +64,9 @@ function displayBooks() {
     <p class="pages">${book.pages} pages</p>
     <p class="read">${book.read ? "Read" : "Not read"}</p>
     <p class="id">${book.id}</p>
-    <button onclick="toggleRead('${book.id}')">Toggle read</button>
+    <button onclick="toggleRead('${book.id}')">Mark as ${
+      book.read ? "unread" : "read"
+    }</button>
     </div>`;
   });
 }
