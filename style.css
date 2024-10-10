@@ -1,0 +1,33 @@
+.pageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.books {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    max-width: 1200px;
+}
+
+.book {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #000;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    width: 200px;
+    height: 260px;
+    p {
+        margin: 0;
+    }
+    box-shadow: 0 4px 10px 5px rgba(0, 0, 0, 0.1);
+
+    .pages {
+        margin-top: auto;
+    }
+}
